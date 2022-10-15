@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { IProduct } from './product';
 import { ProductService } from './product.service';
+import { CriteriaComponent } from '../shared/criteria/criteria.component';
+import { ProductParameterService } from './product-parameter.service';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -9,8 +11,7 @@ import { ProductService } from './product.service';
 })
 export class ProductListComponent implements OnInit {
   pageTitle = 'Product List';
-  listFilter = '';
-  showImage = false;
+  includeDetail = true;
 
   imageWidth = 50;
   imageMargin = 2;
@@ -18,17 +19,40 @@ export class ProductListComponent implements OnInit {
 
   filteredProducts: IProduct[] = [];
   products: IProduct[] = [];
+  // Using the "?" sets the default to undefined
+  // Then need to check for undefined whenever referencing filterComponent
+  @ViewChild(CriteriaComponent) filterComponent?: CriteriaComponent;
 
-  constructor(private productService: ProductService) { }
+  get showImage(): boolean {
+    return this.productParameterService.showImage;
+  }
+  set showImage(value: boolean) {
+    this.productParameterService.showImage = value;
+  }
+
+  constructor(private productService: ProductService,
+              private productParameterService: ProductParameterService) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe({
       next: products => {
         this.products = products;
-        this.performFilter(this.listFilter);
+        // Allows referencing the ViewChild property in ngOnInit and
+        // Prevents the 'Expression has changed after it was checked' error 
+        setTimeout(() => {
+          if (this.filterComponent) {
+            this.filterComponent.listFilter =
+              this.productParameterService.filterBy;
+          }
+        })
       },
       error: err => this.errorMessage = err
     });
+  }
+
+  onValueChange(value: string): void {
+    this.productParameterService.filterBy = value;
+    this.performFilter(value);
   }
 
   toggleImage(): void {
