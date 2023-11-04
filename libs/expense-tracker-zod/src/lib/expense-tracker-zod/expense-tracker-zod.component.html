@@ -1,0 +1,22 @@
+<!-- user-profile.component.html -->
+<form (ngSubmit)="onSubmit(userProfileForm.value)" #userProfileForm="ngForm">
+	<div>
+		<label for="username">Username:</label>
+		<input type="text" id="username" required [(ngModel)]="user.username" name="username">
+	</div>
+	<div>
+		<label for="age">Age:</label>
+		<input type="number" id="age" required [(ngModel)]="user.age" name="age">
+	</div>
+	<div>
+		<label for="email">Email:</label>
+		<input type="email" id="email" required [(ngModel)]="user.email" name="email">
+	</div>
+	<button type="submit">Submit</button>
+</form>
+
+<!-- Display validation messages -->
+<ul *ngIf="messages.length">
+	<li *ngFor="let message of messages">{{ message }}</li>
+</ul>
+

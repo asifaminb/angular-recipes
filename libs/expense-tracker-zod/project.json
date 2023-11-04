@@ -1,0 +1,51 @@
+{
+	"name": "expense-tracker-zod",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/expense-tracker-zod/src",
+	"prefix": "random",
+	"tags": [],
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/angular:ng-packagr-lite",
+			"outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+			"options": {
+				"project": "libs/expense-tracker-zod/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/expense-tracker-zod/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/expense-tracker-zod/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/expense-tracker-zod/jest.config.ts",
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/expense-tracker-zod/**/*.ts",
+					"libs/expense-tracker-zod/**/*.html",
+					"libs/expense-tracker-zod/package.json"
+				]
+			}
+		}
+	}
+}

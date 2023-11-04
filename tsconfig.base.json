@@ -15,6 +15,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@random/expense-tracker-zod": ["libs/expense-tracker-zod/src/index.ts"],
 			"@random/recipes": ["recipes/src/index.ts"],
 			"@random/strategy-pattern": ["libs/strategy-pattern/src/index.ts"],
 			"@random/survey-using-rxstate": ["libs/survey-using-rxstate/src/index.ts"]
