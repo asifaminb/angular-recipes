@@ -1,0 +1,10 @@
+<survey-using-rxstate
+	*ngIf="survey$ | async as survey"
+	[data]="survey"
+	(submitted)="handleSurveySubmit($event)"
+></survey-using-rxstate>
+
+<div *ngIf="surveyAnswers$ | async as answers">
+	<h2>Submitted survey response</h2>
+	<pre><code>{{ answers | json }}</code></pre>
+</div>

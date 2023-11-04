@@ -1,0 +1,51 @@
+{
+	"name": "survey-using-rxstate",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "libs/survey-using-rxstate/src",
+	"prefix": "",
+	"tags": [],
+	"projectType": "library",
+	"targets": {
+		"build": {
+			"executor": "@nx/angular:ng-packagr-lite",
+			"outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+			"options": {
+				"project": "libs/survey-using-rxstate/ng-package.json"
+			},
+			"configurations": {
+				"production": {
+					"tsConfig": "libs/survey-using-rxstate/tsconfig.lib.prod.json"
+				},
+				"development": {
+					"tsConfig": "libs/survey-using-rxstate/tsconfig.lib.json"
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+			"options": {
+				"jestConfig": "libs/survey-using-rxstate/jest.config.ts",
+				"passWithNoTests": true
+			},
+			"configurations": {
+				"ci": {
+					"ci": true,
+					"codeCoverage": true
+				}
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"],
+			"options": {
+				"lintFilePatterns": [
+					"libs/survey-using-rxstate/**/*.ts",
+					"libs/survey-using-rxstate/**/*.html",
+					"libs/survey-using-rxstate/package.json"
+				]
+			}
+		}
+	}
+}

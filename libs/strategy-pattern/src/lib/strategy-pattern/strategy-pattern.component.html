@@ -1,0 +1,7 @@
+<div>
+	<input type="number" [(ngModel)]="packageWeight" placeholder="Package Weight">
+	<button (click)="calculate('standard')">Standard Shipping</button>
+	<button (click)="calculate('express')">Express Shipping</button>
+	<button (click)="calculate('international')">International Shipping</button>
+	<p>Shipping Cost: {{ shippingCost | currency }}</p>
+</div>

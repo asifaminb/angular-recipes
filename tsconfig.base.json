@@ -1,0 +1,24 @@
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"rootDir": ".",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"importHelpers": true,
+		"target": "es2020",
+		"module": "es2020",
+		"lib": ["es2020", "dom"],
+		"skipLibCheck": true,
+		"skipDefaultLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@random/recipes": ["recipes/src/index.ts"],
+			"@random/strategy-pattern": ["libs/strategy-pattern/src/index.ts"],
+			"@random/survey-using-rxstate": ["libs/survey-using-rxstate/src/index.ts"]
+		}
+	},
+	"exclude": ["node_modules", "tmp"]
+}

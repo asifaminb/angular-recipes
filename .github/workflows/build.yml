@@ -1,0 +1,35 @@
+name: Build Project
+
+on:
+  push:
+    branches: [ main, development ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ 'ubuntu-latest' ]
+        node: [ 'latest' ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+#      - name: E2E Tests
+#        run: pnpm nx e2e
+#        env:
+#            CI: true
+      - name: Build
+        run: pnpm run build --configuration=production
+        env:
+          CI: true

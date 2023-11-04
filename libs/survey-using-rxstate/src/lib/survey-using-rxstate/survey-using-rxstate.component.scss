@@ -1,0 +1,63 @@
+.card {
+	min-width: 20rem;
+	padding: 1rem 1.5rem 1.5rem;
+	box-shadow: 1px 1px 2px 2px lightgray;
+	background-color: beige;
+}
+
+.title {
+	margin-bottom: 0.8rem;
+	font-size: 1.3rem;
+}
+
+.subtitle {
+	opacity: 0.7;
+}
+
+.options {
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+}
+
+.option {
+	background-color: darkgreen;
+	color: white;
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+.option:hover {
+	opacity: 0.8;
+}
+
+.textarea {
+	width: 100%;
+	height: 4rem;
+	margin-top: 0.5rem;
+}
+
+.buttons {
+	margin-top: 1rem;
+	display: flex;
+	justify-content: flex-end;
+	gap: 0.5rem;
+}
+
+.button {
+	color: white;
+	background-color: darkgrey;
+	border-radius: 2px;
+	border: none;
+	padding: 0.3rem 0.6rem;
+	cursor: pointer;
+	font-size: 1.1rem;
+}
+
+.button:hover {
+	opacity: 0.8;
+}
+
+.button-primary {
+	background-color: darkgreen;
+}

@@ -1,0 +1,52 @@
+<div class="card">
+	<ng-container *ngIf="currentQuestion$ | async as question; else noQuestion">
+		<div class="title">{{ question.text }}</div>
+		<div class="options">
+			<div
+				*ngFor="let option of question.options"
+				class="option"
+				(click)="handleOptionSelect(question.id, option.id)"
+			>
+				{{ option.text }}
+			</div>
+		</div>
+		<div class="buttons">
+			<button class="button" (click)="handleBack()">Back</button>
+			<button class="button" (click)="handleSkip()">Skip</button>
+		</div>
+	</ng-container>
+
+
+	<ng-template #noQuestion>
+		<ng-container
+			*ngIf="isNotStarted$ | async; then initialPrompt; else finalPrompt"
+		></ng-container>
+	</ng-template>
+
+
+	<ng-template #initialPrompt>
+		<div class="title">Got a time for a quick survey?</div>
+		<div class="subtitle">
+			It won't take more than {{ estimatedMinutes$ | async }} minutes of your
+			time.
+		</div>
+		<div class="buttons">
+			<button class="button button-primary" (click)="handleStart()">
+				Start
+			</button>
+		</div>
+	</ng-template>
+
+
+	<ng-template #finalPrompt>
+		<div class="title">Thank you for your response</div>
+		<div class="subtitle">Is there anything else you'd like to add?</div>
+		<textarea class="textarea" [formControl]="extraTextControl"></textarea>
+		<div class="buttons">
+			<button class="button" (click)="handleBack()">Back</button>
+			<button class="button button-primary" (click)="handleSubmit()">
+				Submit
+			</button>
+		</div>
+	</ng-template>
+</div>
