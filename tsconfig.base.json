@@ -20,7 +20,8 @@
 			"@random/home": ["libs/home/src/index.ts"],
 			"@random/recipes": ["recipes/src/index.ts"],
 			"@random/strategy-pattern": ["libs/strategy-pattern/src/index.ts"],
-			"@random/survey-using-rxstate": ["libs/survey-using-rxstate/src/index.ts"]
+			"@random/survey-using-rxstate": ["libs/survey-using-rxstate/src/index.ts"],
+			"@random/toolbar": ["libs/toolbar/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]
